@@ -30,7 +30,7 @@ body {
 
 .form input,
 .form select,
-.form textarea {
+textarea {
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;

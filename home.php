@@ -2,30 +2,27 @@
 <div class="background">
 
     <div class='container'>
-        <h1>Ответ на ваше обращение</h1>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["name"])) {
             $fio = $_POST["name"];
-            $email = $_POST["email"];
             $message = $_POST["message"];
-            $topic = $_POST["type"];
+            $email = $_POST["email"];
             $source = $_POST["source"];
-            $consent = isset($_POST["consent"]) ? "Да" : "Нет";
+            $type = $_POST["type"];
 
-            echo "<p class='response-item'><span class='response-label'>ФИО:</span> $fio</p>";
-            echo "<p class='response-item'><span class='response-label'>Ваш е-мейл:</span> $email</p>";
-            echo "<p class='response-item'><span class='response-label'>Даю согласие на обработку данных:</span> $consent</p>";
-            echo "<p class='response-item'><span class='response-label'>Откуда узнали о нас:</span> $source</p>";
-
-            if ($topic == "Жалоба") {
-                echo "<p class='response-item'><span class='response-label'>Мы примем во внимание вашу жалобу</span></p>";
-                echo "<p class='response-item'>{$message}</p>";
+            echo '<p> Здравствуйте, '.$fio.'</p>';
+            if ($type == 'propose') {
+                echo '<p>Спасибо за ваше предложение:</p>';
+                echo "<textarea>.$message.</textarea>";
             } else {
-                echo "<p class='response-item'><span class='response-label'>Мы обязательно рассмотрим ваше предложение</span></p>";
-                echo "<p class='response-item'>{$message}</p>";
+                echo '<p>Мы рассмотрим вашу жалобу:</p>';
+                echo "<textarea>$message</textarea>";
             }
+            if (isset($_POST["attachment"]) & $_POST["attachment"] != "") {
+                echo "<p class='response-item'><span class='response-label'>Вы приложили следующий файл:</span>".$_POST["attachment"]."</p>";
+            }
+			echo '<div><a class="btn" href="index.php?name='.$fio.'&email='.$email.'&source='.$source.'">Заполнить снова</a></div>';
         }
-        echo '<a class="btn" href="index.php">Заполнить снова</a>';
-        ?>
+?>
     </div>
 </div>
