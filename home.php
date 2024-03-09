@@ -13,7 +13,7 @@
             echo '<p> Здравствуйте, '.$fio.'</p>';
             if ($type == 'propose') {
                 echo '<p>Спасибо за ваше предложение:</p>';
-                echo "<textarea>.$message.</textarea>";
+                echo "<textarea>$message</textarea>";
             } else {
                 echo '<p>Мы рассмотрим вашу жалобу:</p>';
                 echo "<textarea>$message</textarea>";
